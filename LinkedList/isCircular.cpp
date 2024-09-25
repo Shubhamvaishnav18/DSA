@@ -1,4 +1,5 @@
 #include<iostream>
+#include<map>
 using namespace std;
 
 class Node {
@@ -103,6 +104,25 @@ void deleteNode(Node* &tail, int value) {
     }
 }
 
+//function for linked list circular or not
+bool isCircularList(Node* head) {
+    //empty list
+    if(head == NULL) {
+        return true;
+    }
+
+    Node* temp = head -> next;
+    while(temp != NULL && temp != head) {
+        temp = temp -> next;
+    }
+
+    if(temp = head) {
+        return true;
+    }
+
+    return false;
+}
+
 int main() {
 
     Node* tail = NULL;
@@ -124,8 +144,15 @@ int main() {
     // insertNode(tail, 5, 6);
     // print(tail);
 
-    deleteNode(tail, 3);
-    print(tail);
+    // deleteNode(tail, 3);
+    // print(tail);
+
+    if(isCircularList(tail)) {
+        cout << "Linked List is circular" << endl;
+    }
+    else {
+        cout << "Linked List is not circular" << endl;
+    }
 
     return 0;
 }
